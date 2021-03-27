@@ -18,6 +18,7 @@ Node Packages/App Dependencies:
 Node Command:                                                                 Package Description:
 $: npm install --save express                                                 (Used to create a NodeJS  web-server)
 $: npm install --save-dev nodemon                                             (Used to auto-restart web-server whenever file change detected. Saved as dev dependency using --save-dev flag)
+$: npm install --save express-handlebars                                      (Used as a server-side HTML template engine. Other template engine libraries: ejs and pug)
 
 Important Info:
 Use control + c keys on your keyboard to exit execution. Used to end the web-server code running continuously.
