@@ -1,9 +1,20 @@
 const express = require('express');
 const exphbs  = require('express-handlebars');
+const mongoose = require('mongoose');
 
 // Setup Express Server:
 const app = express();
 const port = 5000;
+
+// Connect to mongoose
+mongoose.connect('mongodb://localhost/vidjot-dev', {
+   useNewUrlParser: true,
+   useUnifiedTopology: true
+}).then(() => {
+   console.log('MongoDB Connected...');
+}).catch(err => {
+   console.log(err);
+});
 
 // Handlebars Middleware:
 app.engine('handlebars', exphbs({
