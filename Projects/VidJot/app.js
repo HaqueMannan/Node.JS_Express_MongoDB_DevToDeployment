@@ -2,6 +2,10 @@ const express = require('express');
 const exphbs  = require('express-handlebars');
 const mongoose = require('mongoose');
 
+// Load Schema Models:
+require('./models/Idea');
+const Idea = mongoose.model('ideas');
+
 // Setup Express Server:
 const app = express();
 const port = 5000;
@@ -32,6 +36,10 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
    res.render('about');
 });
+app.get('/ideas/add', (req, res) => {
+   res.render('ideas/add');
+});
+
 
 // Start Server
 app.listen(port, () => {

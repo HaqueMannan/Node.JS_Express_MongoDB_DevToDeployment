@@ -27,4 +27,5 @@ $: npm install --save mongoose                                                (I
 
 Important Info:
 Use control + c keys on your keyboard to exit execution. Used to end the web-server code running continuously.
-MongoDB must be running in the shell or as a background service (using mongod in order for the app.js to connect to the local MongoDB database)
+MongoDB must be running in the shell or as a background service (using mongod in order for the app.js to connect to the local MongoDB database).
+MongoDB is schema-less (i.e. no schema required on the database level). It is good practice to define the schema on the application level which Mongoose allows you to do.
