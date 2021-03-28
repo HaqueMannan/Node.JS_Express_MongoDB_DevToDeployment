@@ -17,6 +17,11 @@ $: brew services start mongodb-community@4.4                                  (R
 $: brew services stop mongodb-community@4.4                                   (Stop MongoDB running as a MacOS service)
 $: mongod --config /usr/local/etc/mongod.conf                                  (Run MongoDB manually as background service)
 $: use admin   $:db.shutdownServer()                                          (Stop MongoDB manual background service)
+$: mongo                                                                      (MongoDB shell to view database. This command only works when MongoDB services is running)
+$: show dbs                                                                   (MongoDB shell command to view/list databases)
+$: use {dbName}                                                               (MongoDB shell command to switch to the named database. Placeholder not part of the command: {dbName})
+$: show collections                                                           (MongoDB shell command to show collections within a selected database)
+$: db.{collectionName}.find()                                                  (MongoDB shell command to show all data within the collection. Placeholder not part of the command: {collectionName})
 
 Node Packages/App Dependencies:
 Node Command:                                                                 Package Description:
@@ -30,3 +35,4 @@ Important Info:
 Use control + c keys on your keyboard to exit execution. Used to end the web-server code running continuously.
 MongoDB must be running in the shell or as a background service (using mongod in order for the app.js to connect to the local MongoDB database).
 MongoDB is schema-less (i.e. no schema required on the database level). It is good practice to define the schema on the application level which Mongoose allows you to do.
+The MongoDB shell command will only work if the mongod service is running first. To end the MongoDB shell press control + c on your keyboard to end the process.
