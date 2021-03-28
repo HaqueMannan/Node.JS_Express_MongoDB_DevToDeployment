@@ -23,7 +23,8 @@ Node Command:                                                                 Pa
 $: npm install --save express                                                 (Used to create a NodeJS  web-server)
 $: npm install --save-dev nodemon                                             (Used to auto-restart web-server whenever file change detected. Saved as dev dependency using --save-dev flag)
 $: npm install --save express-handlebars                                      (Used as a server-side HTML template engine. Other template engine libraries: ejs and pug)
-$: npm install --save mongoose                                                (Interface to MongoDB database - local or remote database);
+$: npm install --save mongoose                                                (Interface to MongoDB database - local or remote database)
+S: npm install --save body-parser                                             (Use as a middleware to parse HTML form data into the POST request)
 
 Important Info:
 Use control + c keys on your keyboard to exit execution. Used to end the web-server code running continuously.
