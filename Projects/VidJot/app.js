@@ -12,7 +12,7 @@ const Idea = mongoose.model('ideas');
 
 // ------------------------------------
 
-// EXPRESS SERVER SETUP:
+// EXPRESS SERVER & DATABASE SETUP:
 // Setup Express Server:
 const app = express();
 const port = 5000;
@@ -50,9 +50,21 @@ app.get('/', (req, res) => {
       title: title
    });
 });
+
 app.get('/about', (req, res) => {
    res.render('about');
 });
+
+app.get('/ideas', (req, res) => {
+   Idea.find({}).lean()
+      .sort({ date: 'desc' })
+      .then(ideas => {
+         res.render('ideas/index', {
+            ideas: ideas
+         });
+      });
+});
+
 app.get('/ideas/add', (req, res) => {
    res.render('ideas/add');
 });
@@ -89,6 +101,7 @@ app.post('/ideas', (req, res) => {
 
 // ------------------------------------
 
+// START SERVER:
 // Start Web Server:
 app.listen(port, () => {
    console.log(`Server started on port ${port}`);
