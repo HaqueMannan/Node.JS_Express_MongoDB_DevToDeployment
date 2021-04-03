@@ -5,7 +5,8 @@
 
 <div class="card card-body">
    <h3>Edit Video Idea</h3>
-   <form action="/ideas" method="POST">
+   <form action="/ideas/{{idea._id}}?_method=PUT" method="POST" >
+      <input type="hidden" name="_method" value="PUT">
       <div class="form-group mb-3">
          <label class="form-label" for="title">Title</label>
          <input class="form-control" type="text" name="title" required value="{{idea.title}}">

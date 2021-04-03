@@ -30,6 +30,7 @@ $: npm install --save-dev nodemon                                             (U
 $: npm install --save express-handlebars                                      (Used as a server-side HTML template engine. Other template engine libraries: ejs and pug)
 $: npm install --save mongoose                                                (Interface to MongoDB database - local or remote database)
 S: npm install --save body-parser                                             (Use as a middleware to parse HTML form data into the POST request)
+$: npm install --save method-override                                         (Use to override a html Form request methods without AJAX and extra javascript)
 
 Important Info:
 Use control + c keys on your keyboard to exit execution. Used to end the web-server code running continuously.
