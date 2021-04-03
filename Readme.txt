@@ -31,6 +31,8 @@ $: npm install --save express-handlebars                                      (U
 $: npm install --save mongoose                                                (Interface to MongoDB database - local or remote database)
 S: npm install --save body-parser                                             (Use as a middleware to parse HTML form data into the POST request)
 $: npm install --save method-override                                         (Use to override a html Form request methods without AJAX and extra javascript)
+$: npm install --save express-session                                         (Used to create user sessions for the express web server to store the user state)
+$: npm install --save connect-flash                                            (Used for flash messaging)
 
 Important Info:
 Use control + c keys on your keyboard to exit execution. Used to end the web-server code running continuously.
