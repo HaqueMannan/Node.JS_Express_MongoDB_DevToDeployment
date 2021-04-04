@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const exphbs  = require('express-handlebars');
 const session = require('express-session');
@@ -26,6 +27,9 @@ mongoose.connect('mongodb://localhost/vidjot-dev', {
 // ------------------------------------
 
 // MIDDLEWARE:
+// Express Static Directory Path Middleware:
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Handlebars Middleware:
 app.engine('handlebars', exphbs({
    defaultLayout: 'main'
@@ -81,7 +85,6 @@ app.get('/about', (req, res) => {
 // Use Loaded Routes:
 app.use('/ideas', ideas);
 app.use('/users', users);
-
 
 // ------------------------------------
 
