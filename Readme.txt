@@ -33,6 +33,7 @@ S: npm install --save body-parser                                             (U
 $: npm install --save method-override                                         (Use to override a html Form request methods without AJAX and extra javascript)
 $: npm install --save express-session                                         (Used to create user sessions for the express web server to store the user state)
 $: npm install --save connect-flash                                            (Used for flash messaging)
+$: npm install --save bcryptjs                                                (Used for encrypting/hashing data. There are two npm packages bcrypt and bcryptjs. The latter is the simpler implementation)
 
 Important Info:
 Use control + c keys on your keyboard to exit execution. Used to end the web-server code running continuously.
