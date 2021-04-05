@@ -22,6 +22,12 @@ router.get('/login', (req, res) => {
    res.render('users/login');
 });
 
+router.get('/logout', (req, res) => {
+   req.logOut();
+   req.flash('success_msg', 'You are now logged out');
+   res.redirect('/users/login');
+});
+
 // POST Requests:
 router.post('/register', (req, res) => {
    // Server Side Form Validation:

@@ -15,13 +15,16 @@
          </ul>
          <ul class="navbar-nav ms-auto">
             {{#if user}}
-            <li class="nav-item dropdown">
-               <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Video Ideas</a>
-               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="/ideas">Ideas</a>
-                  <a class="dropdown-item" href="/ideas/add">Add Idea</a>
-               </div>
-            </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Video Ideas</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                     <a class="dropdown-item" href="/ideas">Ideas</a>
+                     <a class="dropdown-item" href="/ideas/add">Add Idea</a>
+                  </div>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="/users/logout">Logout</a>
+               </li>
             {{else}}
                <li class="nav-item">
                   <a class="nav-link" href="/users/register">Register</a>
