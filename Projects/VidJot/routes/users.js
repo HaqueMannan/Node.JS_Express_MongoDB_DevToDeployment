@@ -1,5 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
+// ------------------------------------
+
+// MONGOOSE APPLICATION LEVEL SCHEMAS:
+// Load Schema Models:
+require('../models/User');
+const User = mongoose.model('users');
+
+// ------------------------------------
 
 // GET Requests:
 router.get('/register', (req, res) => {
@@ -44,7 +55,39 @@ router.post('/register', (req, res) => {
          confirmPassword: req.body.confirmPassword
       });
    } else {
-      res.send('passed');
+      User.findOne({
+         email: req.body.email
+      }).lean()
+      .then(user => {
+         if(user) {
+            req.flash('error_msg', 'Email already registered');
+            res.redirect('/users/register');
+         } else {
+            // Create newUser object based on User Model:
+            const newUser = new User({
+               name: req.body.name,
+               email: req.body.email,
+               password: req.body.password
+            });
+
+            // Encrypt user's password:
+            bcrypt.genSalt(10, (err, salt) => {
+               bcrypt.hash(newUser.password, salt, (err, hash) => {
+                  if(err) throw err;
+                  newUser.password = hash
+                  newUser.save()
+                     .then(user => {
+                        req.flash('success_msg', 'You are now registered and can now login.');
+                        res.redirect('/users/login');
+                     })
+                     .catch(err => {
+                        console.log(err);
+                        return;
+                     });
+               });
+            });
+         }
+      });
    };
 });
 
