@@ -93,11 +93,28 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res, next) => {
-   passport.authenticate('local', {
-      successRedirect: '/ideas',
-      failureRedirect: '/users/login',
-      failureFlash: true
-   })(req, res, next);
+   // Server Side Form Validation:
+   let errors = [];
+
+   if(!req.body.email) {
+      errors.push( {text: 'Please enter your email'} );
+   };
+
+   if(!req.body.password) {
+      errors.push( {text: 'Please enter your password'} );
+   };
+
+   if(errors.length > 0) {
+      res.render('users/login', {
+         errors: errors,
+      });
+   } else {
+      passport.authenticate('local', {
+         successRedirect: '/ideas',
+         failureRedirect: '/users/login',
+         failureFlash: true
+      })(req, res, next);
+   };
 });
 
 // ------------------------------------

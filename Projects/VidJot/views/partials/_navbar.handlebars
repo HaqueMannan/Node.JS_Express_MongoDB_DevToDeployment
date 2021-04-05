@@ -14,12 +14,7 @@
             </li>
          </ul>
          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-               <a class="nav-link" href="/users/register">Register</a>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link" href="/users/login">Login</a>
-            </li>
+            {{#if user}}
             <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Video Ideas</a>
                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -27,6 +22,14 @@
                   <a class="dropdown-item" href="/ideas/add">Add Idea</a>
                </div>
             </li>
+            {{else}}
+               <li class="nav-item">
+                  <a class="nav-link" href="/users/register">Register</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="/users/login">Login</a>
+               </li>
+            {{/if}}
          </ul>
       </div>
    </div>
