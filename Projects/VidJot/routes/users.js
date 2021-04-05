@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
 
 // ------------------------------------
 
@@ -40,7 +41,7 @@ router.post('/register', (req, res) => {
 
    if(req.body.password.length < 6) {
       errors.push( {text: 'Passwords must be at least 6 characters'} );
-   }
+   };
 
    if(req.body.password != req.body.confirmPassword) {
       errors.push( {text: 'Passwords do not match'} );
@@ -89,6 +90,14 @@ router.post('/register', (req, res) => {
          }
       });
    };
+});
+
+router.post('/login', (req, res, next) => {
+   passport.authenticate('local', {
+      successRedirect: '/ideas',
+      failureRedirect: '/users/login',
+      failureFlash: true
+   })(req, res, next);
 });
 
 // ------------------------------------

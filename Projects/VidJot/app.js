@@ -5,6 +5,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const passport = require('passport');
 const flash = require('connect-flash');
 
 // ------------------------------------
@@ -55,6 +56,11 @@ app.use(flash());
 
 // ------------------------------------
 
+// PASSPORT AUTHENTICATION SETUP:
+require('./config/passport')(passport);
+
+// ------------------------------------
+
 // GLOBAL VARIABLES:
 app.use(function(req, res, next) {
    res.locals.success_msg = req.flash('success_msg');
@@ -62,6 +68,8 @@ app.use(function(req, res, next) {
    res.locals.error = req.flash('error');
    next();
 });
+
+// ------------------------------------
 
 // LOAD ROUTES:
 const ideas = require('./routes/ideas');
