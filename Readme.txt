@@ -37,6 +37,18 @@ $: npm install --save bcryptjs                                                (U
 $: npm install --save passport                                                (Used as an authentication middleware for Node.js)
 $: npm install --save passport-local                                          (Used as an local authentication strategy used with the passport module)
 
+Git Commands (while within the Project Directory within the terminal):
+$: git init                                                                   (Git command to initialise a local repository)
+$: git add .                                                                  (Git command to add all files to the repository)
+$: git commit -am "{comment}"                                                 (Git command to add a useful descriptive comment for the commit)
+$: git push heroku master                 
+
+Heroku Toolbelt CLI Commands (while within the Project Directory within the terminal):
+$: heroku login                                                               (Heroku command to login to an Heroku account)
+$: heroku create                                                              (Heroku command to create the application in Heroku - Heroku will provide a random heroku-app-name)
+$: heroku git:remote -a <heroku-app-name>                                     (Heroku command to create a remote to the Heroku app)
+$: heroku open                                                                (Heroku command to open the live deployed app in the browser)
+
 Important Info:
 Use control + c keys on your keyboard to exit execution. Used to end the web-server code running continuously.
 MongoDB must be running in the shell or as a background service (using mongod in order for the app.js to connect to the local MongoDB database).
@@ -67,3 +79,10 @@ Within config, create a database.js file which will export the mongoURI link bas
       mongoose.connect(db.mongoURI), {}
       ...
 
+Before deploying to Heroku, you need to create a Github account (https://github.com/) and install Git on your machine in order to create a local git repository for the applications. Heroku works by packaging the application in a local git repository which you then push to Heroku.
+Create a .gitignore file to specify which files and folders to ignore when pushing the app to Heroku i.e. the /node_modules folder.
+Install Heroku Toolbelt CLI (https://devcenter.heroku.com/articles/heroku-cli) to help with deployment to Heroku. Note on Windows the Heroku Toolbelt CLI does not work with gitbash terminal, use the normal Windows terminal running as administrator. Run the Heroku CLI commands while within in the Project Directory.
+   After running the command to create the application in heroku, login to your Heroku account, click on the newly created app and then click on Deploy to find the commands you need to run in order to add the Heroku app remote to your computer, for example:
+      $: heroku git:remote -a floating-cavern-88849
+Finally, run the last git command to push the local git repository files up to the remote Heroku app server i.e. $: git push heroku master
+The app is now live and deployed to the web using Heroku as the web provider. Heroku will provide a unique domain name (URL) to the app.
