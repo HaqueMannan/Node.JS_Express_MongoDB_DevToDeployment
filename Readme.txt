@@ -86,3 +86,12 @@ Install Heroku Toolbelt CLI (https://devcenter.heroku.com/articles/heroku-cli) t
       $: heroku git:remote -a floating-cavern-88849
 Finally, run the last git command to push the local git repository files up to the remote Heroku app server i.e. $: git push heroku master
 The app is now live and deployed to the web using Heroku as the web provider. Heroku will provide a unique domain name (URL) to the app.
+
+To add your own domain name you will need to find a domain name provider to purchase a domain name. Namecheap is one such provider (https://www.namecheap.com/) but it does not matter which domain name provider you use. The interface will look a little different but you should have similar options.
+   Go to the DNS options (in Namecheap this is within the Advanced DNS option).
+   Edit the CNAME Record option for the www host.
+      You can update the Heroku App Domain Name URL by logging into your Heroku account and under settings tab scroll down to the Domains and Certificates section. Use the Add Domain button to add a domain name. To add a domain name you need a credit card on file which you can add to your Heroku account under Account Settings > Billing > Add Credit Card (it does not cost to add a domain name on file but it does require you to add your credit card on file). Add the domain name you have purchases/registered from your domain provider (e.g. from Namecheap) - include the www. version as well. Copy the DNS target from Heroku to paste it into the CNAME Record's value in your Domain Name Host provider's account Advanced DNS settings.
+   Wait a little while (possibly half an hour or so) for the domain name connection to be setup between the two hosts.
+You now have a custom domain name URL that links to your Heroku application.
+
+You now have a live application fully deployed to the web which can accept live users.
