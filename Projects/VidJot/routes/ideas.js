@@ -15,7 +15,7 @@ const Idea = mongoose.model('ideas');
 // APPLICATION CRUD API:
 // GET Requests:
 router.get('/', ensureAuthenticated, (req, res) => {
-   Idea.find({}).lean()
+   Idea.find({ user: req.user.id }).lean()
       .sort({ date: 'desc' })
       .then(ideas => {
          res.render('ideas/index', {
@@ -33,9 +33,14 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
       _id: req.params.id
    }).lean()
    .then(idea => {
-      res.render('ideas/edit', {
-         idea: idea
-      });
+      if(idea.user != req.user.id) {
+         req.flash('error_msg', 'Not Authorised');
+         res.redirect('/ideas');
+      } else {
+         res.render('ideas/edit', {
+            idea: idea
+         });
+      };
    });
 });
 
@@ -60,7 +65,8 @@ router.post('/', ensureAuthenticated, (req, res) => {
    } else {
       const newUser = {
          title: req.body.title,
-         details: req.body.details
+         details: req.body.details,
+         user: req.user.id
       };
       new Idea(newUser)
          .save()
