@@ -13,10 +13,13 @@ const flash = require('connect-flash');
 // EXPRESS SERVER & DATABASE SETUP:
 // Setup Express Server:
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
+
+// DB CONFIG (DEV/PROD) URI Link:
+const db = require('./config/database');
 
 // Connect to Mongoose:
-mongoose.connect('mongodb://localhost/vidjot-dev', {
+mongoose.connect(db.mongoURI, {
    useNewUrlParser: true,
    useUnifiedTopology: true
 }).then(() => {

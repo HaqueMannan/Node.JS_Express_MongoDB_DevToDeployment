@@ -12,7 +12,7 @@ Useful Commands (while within the Project Directory within the terminal):
 Command:                                                                      Description:
 $: npm init                                                                   (Initialise a new node project i.e. package.json file)
 $: node app                                                                   (Run app.js file i.e. entry point for the app)
-$: npm start                                                                  (Run the script called 'start' within Package.json file e.g. "scripts": { "start": "nodemon app.js"}
+$: npm start                                                                  (Run the script called 'start' within Package.json file e.g. "scripts": { "start": "nodemon app.js"})
 $: brew services start mongodb-community@4.4                                  (Run MongoDB as a MacOS service)
 $: brew services stop mongodb-community@4.4                                   (Stop MongoDB running as a MacOS service)
 $: mongod --config /usr/local/etc/mongod.conf                                  (Run MongoDB manually as background service)
@@ -42,3 +42,28 @@ Use control + c keys on your keyboard to exit execution. Used to end the web-ser
 MongoDB must be running in the shell or as a background service (using mongod in order for the app.js to connect to the local MongoDB database).
 MongoDB is schema-less (i.e. no schema required on the database level). It is good practice to define the schema on the application level which Mongoose allows you to do.
 The MongoDB shell command will only work if the mongod service is running first. To end the MongoDB shell press control + c on your keyboard to end the process.
+
+Preparing & Deploying App:
+Within Package.json change the start script to "scripts": { "start": "node app.js"} - This is required for Heroku which will run the start script.
+Rename the nodemon script with another name e.g. "scripts": { "start-dev": "node app.js"} - This ensures you can use nodemon in development.
+Heroku decides which port to use for your app. Update the app.js port variable to use process.env or 5000. This will ensure the app can run in both Live and Development environments. Heroku will provide the port value in the  process.env.PORT variable.
+Setup a Development and Production database.
+   The Development database will point to: mongoose.connect('mongodb://localhost/vidjot-dev', {}
+   You can use mLabs(https://mlab.com/login/) or MongoDB Atlas(https://www.mongodb.com/cloud/atlas) services for the Production database.
+   To use the Production database, take the link provided by mLabs/MognoDB Atlas and plug it into the mongoose.connect('') method.
+      For example, if using mLabs the link to plug in would look something like: ongoose.connect('mongodb://<dbuser>:<dbpassword>@ds141454.mlab.com:41454/vidjot-prod>', {}.
+Within config, create a database.js file which will export the mongoURI link based on whether you are in Development or Production. This makes the app dynamic to select the correct database to use depending on which environment you are in. The database config can be loaded into the app.js file as seen in the code snippet below:
+
+   <ProjectName>/config/database.js:
+      if(process.env.NODE_ENV === 'production') {
+         module.exports = { mongoURI: 'mongodb://<dbuser>:<dbpassword>@ds141454.mlab.com:41454/vidjot-prod>' }
+      } else {
+         module.exports = { mongoURI: 'mongodb://localhost/vidjot-dev' }
+      };
+
+   <ProjectName>/app.js:
+      ...
+      const db = require('./config/database');
+      mongoose.connect(db.mongoURI), {}
+      ...
+
