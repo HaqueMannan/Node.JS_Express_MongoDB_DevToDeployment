@@ -1,0 +1,26 @@
+Requires App to be deployed to a web hosting service like Heroku.
+
+Google OAuth Strategy Setup:
+Login to Google Cloud Platform Console with your google account and create a new Project.
+Search for APIs and Services and from this menu click on the +Enable APIS AND SERVICES.
+Search for the Google+ API under the Social Category. Click the Enable button.
+From the Google+ API sidebar menu click on credentials option.
+Click on the Crendentials in APIs & Service link.
+Click on the +Create credentials button and select OAuth client ID option.
+Click on the Configure Consent Screen button. Click on the External radio button and click Create.
+Complete the form to create OAuth Consent Screen.
+Go back to the Credentials from the sidebar menu and click on then +Create credentials button and select OAuth client ID option.
+This time you will now be able to select a Application type from the dropdown selection. Select Web Application.
+Click on the +Add URI button under the Authorised JavaScript origins option and enter http://localhost:5000 - This is the domain name for the app.
+Click on the +Add URI button under the Authorised redirect URIs option and enter http://localhost:5000/auth/google/callback - This acts the callback route for google to send the access token key back to.
+Click on the Create button. This should now provide the credentials for your app to use. Create a new file within your project config/keys.js to store this information
+It is important to keep your secret key hidden in actual deployment.
+
+Example
+module.exports = {
+   mongoURI: 'mongodb+srv://<dbUser>:<password>@cluster0.0wjcw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+   googleClientID: '717893557330-erq9r11due3mh0c8f4mstfe7ltrv9uci.apps.googleusercontent.com',
+   googleClientSecret: 'vkIdP6qx4SwPSmpQ7opoXlbA'
+};
+
+You now have Google OAuth setup ready to use in your application with the passport-google-oauth20 node module.
