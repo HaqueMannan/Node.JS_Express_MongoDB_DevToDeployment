@@ -1,0 +1,19 @@
+{
+   "name": "storybooks",
+   "version": "1.0.0",
+   "description": "App to share public or write private stories",
+   "main": "app.js",
+   "scripts": {
+      "start": "node app.js",
+      "start-dev": "nodemon app.js"
+   },
+   "author": "",
+   "license": "ISC",
+   "dependencies": {
+      "express": "^4.17.1",
+      "mongoose": "^5.12.4"
+   },
+   "devDependencies": {
+      "nodemon": "^2.0.7"
+   }
+}
