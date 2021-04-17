@@ -24,3 +24,4 @@ module.exports = {
 };
 
 You now have Google OAuth setup ready to use in your application with the passport-google-oauth20 node module.
+Your project would need a route for /auth/google for the authentication route.

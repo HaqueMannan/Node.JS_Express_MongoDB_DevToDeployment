@@ -36,6 +36,7 @@ $: npm install --save connect-flash                                            (
 $: npm install --save bcryptjs                                                (Used for encrypting/hashing data. There are two npm packages bcrypt and bcryptjs. The latter is the simpler implementation)
 $: npm install --save passport                                                (Used as an authentication middleware for Node.js)
 $: npm install --save passport-local                                          (Used as an local authentication strategy used with the passport module)
+$: npm install --save passport-google-oauth20                                 (Used as an Google OAuth authentication strategy used with the passport module)
 
 Git Commands (while within the Project Directory within the terminal):
 $: git init                                                                   (Git command to initialise a local repository)
