@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const keys = require('./config/keys');
@@ -37,6 +38,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Express-Handlebars Middleware:
+app.engine('handlebars', exphbs({
+   defaultLayout: 'main'
+}));
+app.set('view engine', 'handlebars');
+
 // Set Global Variable:
 app.use((req, res, next) =>{
    res.locals.user = req.user || null;
@@ -44,14 +51,11 @@ app.use((req, res, next) =>{
 });
 
 // Load Routes:
+const index = require('./routes/index');
 const auth = require('./routes/auth');
 
-// Home Route:
-app.get('/', (req, res) => {
-   res.send('App is working!');
-});
-
 // Use Routes:
+app.use('/', index);
 app.use('/auth', auth);
 
 // Start Express Server:
