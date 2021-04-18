@@ -29,7 +29,8 @@ module.exports = function(passport) {
          // Check for existing user
          User.findOne({
             googleID: profile.id
-         }).then(user => {
+         }).lean()
+         .then(user => {
             if(user) {
                // Return User
                done(null, user);
@@ -46,11 +47,12 @@ module.exports = function(passport) {
    );
 
    passport.serializeUser((user, done) => {
-      done(null, user.id);
+      done(null, user._id);
    });
 
    passport.deserializeUser((id, done) => {
-      User.findById(id).then(user => {
+      User.findById(id).lean()
+      .then(user => {
          done(null, user);
       });
    });
