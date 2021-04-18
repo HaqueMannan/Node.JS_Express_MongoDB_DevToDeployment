@@ -19,6 +19,9 @@ mongoose.connect(keys.mongoURI, {
    console.log(err);
 });
 
+// Load MongoDB Schema Models:
+require('./models/User');
+
 // Load Passport Config:
 require('./config/passport')(passport);
 
