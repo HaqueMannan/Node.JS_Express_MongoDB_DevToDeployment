@@ -37,6 +37,7 @@ $: npm install --save bcryptjs                                                (U
 $: npm install --save passport                                                (Used as an authentication middleware for Node.js)
 $: npm install --save passport-local                                          (Used as an local authentication strategy used with the passport module)
 $: npm install --save passport-google-oauth20                                 (Used as an Google OAuth authentication strategy used with the passport module)
+$: npm install --save express-session                                         (Used for passport middleware which uses sessions)
 
 Git Commands (while within the Project Directory within the terminal):
 $: git init                                                                   (Git command to initialise a local repository)
