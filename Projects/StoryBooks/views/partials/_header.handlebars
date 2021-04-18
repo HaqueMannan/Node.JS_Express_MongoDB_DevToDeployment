@@ -1,18 +1,36 @@
 <nav class="grey darken-3">
    <div class="container">
       <div class="nav-wrapper">
-         <a href="/stories" class="brand-logo center">StoryBooks</a>
-         <a href="#" class="button-collapse hide-on-med-and-down" data-activates="main-menu"><i class="fa fa-bars"></i></a>
+            <a class="brand-logo center" href="/stories">StoryBooks</a>
+            <a class="sidenav-trigger show-on-large" href="#" data-target="main-menu"><i class="fa fa-bars"></i></a>
 
-         <!-- Right Nav -->
-         <ul class="right hide-on-small-only">
-            {{#if user}}
-               <li><a href="/dashboard">Welcome {{user.firstName}}</a></li>
-               <li><a href="/auth/logout"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
-            {{else}}
-               <li><a href="/stories"><i class="fa fa-book"></i> Public Stories</a></li>
-            {{/if}}
-         </ul>
+            <!-- Right Nav -->
+            <ul class="right hide-on-small-only">
+               {{#if user}}
+                  <li><a href="/dashboard">Welcome {{user.firstName}}</a></li>
+                  <li><a href="/auth/logout"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+               {{else}}
+                  <li><a href="/stories"><i class="fa fa-book"></i> Public Stories</a></li>
+               {{/if}}
+            </ul>
       </div>
    </div>
 </nav>
+
+<!-- Side Menu -->
+<ul id="main-menu" class="sidenav">
+   {{#if user}}
+   {{else}}
+      <li>
+         <a class="btn red darken-1" href="/auth/google"><i class="fab fa-google left white-text"></i> Login with Google</a>
+      </li>
+   {{/if}}
+
+    <li><a href="/stories"><i class="fa fa-book"></i> Public Stories</a></li>
+    <li class="divider"></li>
+   {{#if user}}
+      <li><a href="/dashboard"><i class="fas fa-cog"></i> Dashboard</a></li>
+      <li><a href="/stories/my"><i class="fas fa-user"></i> My Stories</a></li>
+      <li><a href="/auth/logout"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+   {{/if}}
+</ul>
