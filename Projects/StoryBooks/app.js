@@ -53,10 +53,12 @@ app.use((req, res, next) =>{
 // Load Routes:
 const index = require('./routes/index');
 const auth = require('./routes/auth');
+const stories = require('./routes/stories');
 
 // Use Routes:
 app.use('/', index);
 app.use('/auth', auth);
+app.use('/stories', stories);
 
 // Start Express Server:
 app.listen(port, () => {

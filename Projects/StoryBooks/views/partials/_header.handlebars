@@ -19,12 +19,11 @@
 
 <!-- Side Menu -->
 <ul id="main-menu" class="sidenav">
-   {{#if user}}
-   {{else}}
+   {{#unless user}}
       <li>
-         <a class="btn red darken-1" href="/auth/google"><i class="fab fa-google left white-text"></i> Login with Google</a>
+         <a class="btn red darken-1" style="padding-left:25px;" href="/auth/google"><i class="fab fa-google left white-text"></i> Login with Google</a>
       </li>
-   {{/if}}
+   {{/unless}}
 
     <li><a href="/stories"><i class="fa fa-book"></i> Public Stories</a></li>
     <li class="divider"></li>
