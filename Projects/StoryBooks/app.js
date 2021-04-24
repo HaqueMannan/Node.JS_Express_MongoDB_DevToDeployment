@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
@@ -49,6 +50,9 @@ app.use((req, res, next) =>{
    res.locals.user = req.user || null;
    next();
 });
+
+// Set Static Folders:
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Load Routes:
 const index = require('./routes/index');
