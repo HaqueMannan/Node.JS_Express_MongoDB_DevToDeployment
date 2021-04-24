@@ -46,7 +46,7 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 // Set Global Variable:
-app.use((req, res, next) =>{
+app.use((req, res, next) => {
    res.locals.user = req.user || null;
    next();
 });
