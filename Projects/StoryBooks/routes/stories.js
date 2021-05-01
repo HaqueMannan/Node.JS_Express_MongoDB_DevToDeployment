@@ -7,7 +7,14 @@ const Story = mongoose.model('stories');
 
 // Stories Index:
 router.get('/', (req, res) => {
-   res.render('stories/index');
+   Story.find({ status: 'public' })
+      .populate('user')
+      .lean()
+      .then(stories => {
+         res.render('stories/index', {
+            stories: stories
+         });
+      });
 });
 
 // Add Stories Form:
@@ -26,7 +33,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
       body: req.body.body,
       status: req.body.status,
       allowComments: allowComments,
-      user: req.user.id
+      user: req.user._id
    };
 
    // Create the Story to MongoDB
