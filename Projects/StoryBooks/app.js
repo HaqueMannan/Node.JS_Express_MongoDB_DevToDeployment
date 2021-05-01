@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const keys = require('./config/keys');
+const bodyParser = require('body-parser');
 
 // Setup Express Server:
 const app = express();
@@ -24,6 +25,7 @@ mongoose.connect(keys.mongoURI, {
 
 // Load MongoDB Schema Models:
 require('./models/User');
+require('./models/Story');
 
 // Load Passport Config:
 require('./config/passport')(passport);
@@ -44,6 +46,10 @@ app.engine('handlebars', exphbs({
    defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
+
+// Body-Parser Middleware:
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Set Global Variable:
 app.use((req, res, next) => {
