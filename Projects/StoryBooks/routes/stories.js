@@ -70,4 +70,24 @@ router.post('/', ensureAuthenticated, (req, res) => {
       });
 });
 
+// Update/PUT a Story
+router.put('/:id', (req, res) => {
+   Story.findOne({
+      _id: req.params.id
+   }).then(story => {
+      let allowComments;
+      req.body.allowComments? allowComments = true : allowComments = false
+
+      // Set new values from the Edit Stories Form
+      story.title = req.body.title;
+      story.body = req.body.body;
+      story.status = req.body.status;
+      story.allowComments = allowComments;
+
+      story.save().then(story => {
+         res.redirect('/dashboard');
+      });
+   });
+});
+
 module.exports = router;

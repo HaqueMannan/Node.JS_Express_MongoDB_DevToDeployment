@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 const { truncate, stripTags, formatDate, select } = require('./helpers/hbs');
 
 // Setup Express Server:
@@ -57,6 +58,9 @@ app.set('view engine', 'handlebars');
 // Body-Parser Middleware:
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Method-Override Middleware:
+app.use(methodOverride('_method'));
 
 // Set Global Variable:
 app.use((req, res, next) => {
