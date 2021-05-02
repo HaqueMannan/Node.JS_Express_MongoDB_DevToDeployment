@@ -35,6 +35,19 @@ router.get('/add', ensureAuthenticated, (req, res) => {
    res.render('stories/add');
 });
 
+// Edit Stories Form:
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
+   Story.findOne({
+      _id: req.params.id
+   })
+   .lean()
+   .then(story => {
+      res.render('stories/edit', {
+         story: story
+      });
+   });
+});
+
 // Post a Story:
 router.post('/', ensureAuthenticated, (req, res) => {
    let allowComments;

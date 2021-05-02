@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
-const { truncate, stripTags, formatDate } = require('./helpers/hbs');
+const { truncate, stripTags, formatDate, select } = require('./helpers/hbs');
 
 // Setup Express Server:
 const app = express();
@@ -47,7 +47,8 @@ app.engine('handlebars', exphbs({
    helpers: {
       truncate: truncate,
       stripTags: stripTags,
-      formatDate: formatDate
+      formatDate: formatDate,
+      select: select
    },
    defaultLayout: 'main'
 }));
