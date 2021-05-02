@@ -70,7 +70,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
       });
 });
 
-// Update/PUT a Story
+// Update/PUT a Story:
 router.put('/:id', (req, res) => {
    Story.findOne({
       _id: req.params.id
@@ -87,6 +87,13 @@ router.put('/:id', (req, res) => {
       story.save().then(story => {
          res.redirect('/dashboard');
       });
+   });
+});
+
+// Delete a Story:
+router.delete('/:id', (req, res) => {
+   Story.remove({_id: req.params.id}).then(() => {
+      res.redirect('/dashboard');
    });
 });
 

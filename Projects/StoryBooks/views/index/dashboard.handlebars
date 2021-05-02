@@ -19,7 +19,8 @@
                <td>
                   <a class="btn left-align" href="/stories/edit/{{_id}}"><i class="fas fa-pencil-alt"></i> Edit</a>
 
-                  <form action="/stories/{{id}}" method="POST" id="delete-form">
+                  <form action="/stories/{{_id}}?_method=DELETE" method="POST" id="delete-form">
+                     <input type="hidden" name="_method" value="DELETE">
                      <button class="btn red" type="submit"><i class="fas fa-times"></i> Delete</button>
                   </form>
                </td>
