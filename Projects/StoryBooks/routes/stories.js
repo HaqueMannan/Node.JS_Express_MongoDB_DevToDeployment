@@ -49,9 +49,23 @@ router.get('/show/:id', (req, res) => {
    }).populate('user').populate('comments.commentUser')
    .lean()
    .then(story => {
-      res.render('stories/show', {
-         story: story
-      });
+      if(story.status == 'public') {
+         res.render('stories/show', {
+            story: story
+         });
+      } else {
+         if(req.user) {
+            if(req.user._id.toString() === story.user._id.toString()) {
+               res.render('stories/show', {
+                  story: story
+               });
+            } else {
+               res.redirect('/stories');
+            };
+         } else {
+            res.redirect('/stories');
+         };
+      };
    });
 });
 
