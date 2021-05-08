@@ -18,6 +18,30 @@ router.get('/', (req, res) => {
       });
 });
 
+// My Stories
+router.get('/my', ensureAuthenticated, (req, res) => {
+   Story.find({user: req.user._id}).populate('user')
+   .lean()
+   .then(stories => {
+      res.render('stories/index', {
+         stories: stories
+      });
+   });
+});
+
+// List Stories From a User
+router.get('/user/:userId', (req, res) => {
+   Story.find({
+      user: req.params.userId, status: 'public'
+   }).populate('user')
+   .lean()
+   .then(stories => {
+      res.render('stories/index', {
+         stories: stories
+      });
+   });
+});
+
 // Show Single Story:
 router.get('/show/:id', (req, res) => {
    Story.findOne({

@@ -33,7 +33,7 @@
                <h5>{{commentBody}}</h5>
                <div class="chip">
                   <img src="{{commentUser.image}}">
-                  {{commentUser.firstName}} {{commentUser.lastName}}
+                  <a href="/stories/user/{{commentUser._id}}">{{commentUser.firstName}} {{commentUser.lastName}}</a>
                </div>
                <br>
                <small>Posted: {{formatDate commentDate 'Do MMMM YYYY'}}</small>
@@ -49,7 +49,7 @@
             <img class="circle responsive-img" src="{{story.user.image}}">
          </div>
          <div class="card-action">
-            <a href="/stories/user/{{story.user.id}}">More From {{story.user.firstName}}</a>
+            <a href="/stories/user/{{story.user._id}}">More From {{story.user.firstName}}</a>
          </div>
       </div>
    </div>
