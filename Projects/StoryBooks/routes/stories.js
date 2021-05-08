@@ -97,4 +97,23 @@ router.delete('/:id', (req, res) => {
    });
 });
 
+// Add Comment:
+router.post('/comment/:id', (req, res) => {
+   Story.findOne({
+      _id: req.params.id
+   }).then(story => {
+      const newComment = {
+         commentBody: req.body.commentBody,
+         commentUser: req.user._id
+      }
+
+      // Unshift to Comments Array
+      story.comments.unshift(newComment);
+
+      story.save().then(story => {
+         res.redirect(`/stories/show/${story._id}`);
+      });
+   });
+});
+
 module.exports = router;
