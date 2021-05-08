@@ -7,7 +7,7 @@ const passport = require('passport');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-const { truncate, stripTags, formatDate, select } = require('./helpers/hbs');
+const { truncate, stripTags, formatDate, select, editIcon } = require('./helpers/hbs');
 
 // Setup Express Server:
 const app = express();
@@ -49,7 +49,8 @@ app.engine('handlebars', exphbs({
       truncate: truncate,
       stripTags: stripTags,
       formatDate: formatDate,
-      select: select
+      select: select,
+      editIcon: editIcon
    },
    defaultLayout: 'main'
 }));

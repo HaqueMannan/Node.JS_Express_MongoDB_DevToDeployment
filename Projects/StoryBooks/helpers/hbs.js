@@ -20,5 +20,16 @@ module.exports = {
    },
    select: function(selected, options) {
       return options.fn(this).replace(new RegExp(' value=\"'+ selected + '\"'), '$& selected="selected"').replace(new RegExp('>' + selected + '</option>'), 'selected="selected"$&');
+   },
+   editIcon: function(storyUser, loggedUser, storyId, floating = true) {
+      if(storyUser.toString() == loggedUser) {
+         if(floating) {
+            return `<a class="btn-floating halfway-fab red" href="/stories/edit/${storyId}"><i class="fas fa-pencil-alt"></i></a>`
+         } else {
+            return `<a href="/stories/edit/${storyId}"><i class="fas fa-pencil-alt"></i></a>`
+         };
+      } else {
+         return '';
+      };
    }
 };

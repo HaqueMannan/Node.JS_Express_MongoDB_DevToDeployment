@@ -9,6 +9,7 @@ const Story = mongoose.model('stories');
 router.get('/', (req, res) => {
    Story.find({ status: 'public' })
       .populate('user')
+      .sort({date: 'desc'})
       .lean()
       .then(stories => {
          res.render('stories/index', {
@@ -42,9 +43,13 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
    })
    .lean()
    .then(story => {
-      res.render('stories/edit', {
-         story: story
-      });
+      if(story.user.toString() !== req.user._id.toString()) {
+         res.redirect('/stories');
+      } else {
+         res.render('stories/edit', {
+            story: story
+         });
+      };
    });
 });
 
