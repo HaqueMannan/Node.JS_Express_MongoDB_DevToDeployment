@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 router.get('/show/:id', (req, res) => {
    Story.findOne({
       _id: req.params.id
-   }).populate('user')
+   }).populate('user').populate('comments.commentUser')
    .lean()
    .then(story => {
       res.render('stories/show', {
