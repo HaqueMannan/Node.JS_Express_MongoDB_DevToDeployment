@@ -25,3 +25,8 @@ module.exports = {
 
 You now have Google OAuth setup ready to use in your application with the passport-google-oauth20 node module.
 Your project would need a route for /auth/google for the authentication route.
+
+Important Note:
+- If you are deploying to a webhost and are using your own domain name, ensure the OAuth setup on your Google Cloud Platform Console has a link to your domain path. This should include the 'www' e.g:
+http://www.<domainname>
+http://www.<domainname>/auth/google/callback
