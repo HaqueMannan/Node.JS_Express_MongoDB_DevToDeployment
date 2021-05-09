@@ -98,3 +98,35 @@ To add your own domain name you will need to find a domain name provider to purc
 You now have a custom domain name URL that links to your Heroku application.
 
 You now have a live application fully deployed to the web which can accept live users.
+
+Important Note:
+- The LIVE and TEST database should be two separate databases.
+- If deploying your application on the web, you should ensure that your Database account/password and API Secret Keys (i.e. sensitive information) are hidden from your code which clients can access.
+- Heroku (and other web hosting providers) provide the ability to store sensitive information that your application requires within server-side variables which will help hide this information from clients and make your application more secure.
+- In Heroku log into your account and go to your app project. Within the Settings tab, on the Config Vars section click on the Reveal Config Vars button. Now add your variables and values. This should match the variable name in the key_prod.js file you would create (or vice versa whichever is created first).
+- The reference to the server side variables should be in all UPPER CASE.
+- The keys file structure within your  would look like the example below:
+
+   keys_dev.js:
+   module.exports = {
+      mongoURI: 'mongodb+srv://<dbuser>:<dbpassword>@cluster0.0wjcw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+      googleClientID: '717893557330-erq9r11due3mh0c8f4mstfe7ltrv9uci.apps.googleusercontent.com',
+      googleClientSecret: 'wrJmP6qx6SpPStrQ9opoXlbB'
+   };
+
+   keys_prod.js:
+   module.exports = {
+      mongoURI: process.env.MONGO_URI,
+      googleClientID: process.env.GOOGLE_CLIENT_ID,
+      googleClientSecret: process.env.GOOGLE_CLIENT_SECRET
+   };
+
+   keys.js:
+   if(process.env.NODE_ENV === 'production') {
+      module.exports = require('./keys_prod');
+   } else {
+      module.exports = require('./keys_dev');
+   };
+
+- When the app.js file brings in the keys it can decide which keys to use based on whether the node environment is production or development. The keys used would either use the production server variables or the local development keys file.
+- For local development keys, you should ensure that the .gitignore has the path to the file to prevent your development keys and passwords being pushed to the web server.
